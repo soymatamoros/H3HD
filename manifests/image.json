@@ -1,0 +1,8 @@
+{
+  "module": "image",
+  "modelIds": [
+    "sdxl-base"
+  ],
+  "optional": false,
+  "note": "Model sizes are approximate from official workflow notes; install only after live trusted SHA256/size resolution. No unverified learned enhancement model is included."
+}

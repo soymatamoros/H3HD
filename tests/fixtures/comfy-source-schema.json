@@ -1,0 +1,1570 @@
+{
+  "CLIPTextEncode": {
+    "input": {
+      "required": {
+        "text": [
+          "STRING",
+          {
+            "multiline": true,
+            "dynamicPrompts": true,
+            "tooltip": "The text to be encoded."
+          }
+        ],
+        "clip": [
+          "CLIP",
+          {
+            "tooltip": "The CLIP model used for encoding the text."
+          }
+        ]
+      }
+    },
+    "output": [
+      "CONDITIONING"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "VAEDecode": {
+    "input": {
+      "required": {
+        "samples": [
+          "LATENT",
+          {
+            "tooltip": "The latent to be decoded."
+          }
+        ],
+        "vae": [
+          "VAE",
+          {
+            "tooltip": "The VAE model used for decoding the latent."
+          }
+        ]
+      }
+    },
+    "output": [
+      "IMAGE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "VAEEncode": {
+    "input": {
+      "required": {
+        "pixels": [
+          "IMAGE"
+        ],
+        "vae": [
+          "VAE"
+        ]
+      }
+    },
+    "output": [
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "CheckpointLoaderSimple": {
+    "input": {
+      "required": {
+        "ckpt_name": [
+          [
+            "sd_xl_base_1.0.safetensors"
+          ],
+          {
+            "tooltip": "The name of the checkpoint (model) to load."
+          }
+        ]
+      }
+    },
+    "output": [
+      "MODEL",
+      "CLIP",
+      "VAE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "VAELoader": {
+    "input": {
+      "required": {
+        "vae_name": [
+          [
+            "minimax_h3_video_vae_int8_convrot.safetensors",
+            "minimax_h3_audio_vae_fp32.safetensors"
+          ]
+        ]
+      }
+    },
+    "output": [
+      "VAE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "UNETLoader": {
+    "input": {
+      "required": {
+        "unet_name": [
+          [
+            "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+            "minimax_h3_ref2va_pruned_int8_convrot.safetensors"
+          ]
+        ],
+        "weight_dtype": [
+          [
+            "default",
+            "fp8_e4m3fn",
+            "fp8_e4m3fn_fast",
+            "fp8_e5m2"
+          ],
+          {
+            "advanced": true
+          }
+        ]
+      }
+    },
+    "output": [
+      "MODEL"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "CLIPLoader": {
+    "input": {
+      "required": {
+        "clip_name": [
+          [
+            "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors"
+          ]
+        ],
+        "type": [
+          [
+            "stable_diffusion",
+            "stable_cascade",
+            "sd3",
+            "stable_audio",
+            "mochi",
+            "ltxv",
+            "pixart",
+            "cosmos",
+            "lumina2",
+            "wan",
+            "hidream",
+            "chroma",
+            "ace",
+            "omnigen2",
+            "qwen_image",
+            "hunyuan_image",
+            "flux2",
+            "ovis",
+            "longcat_image",
+            "cogvideox",
+            "lens",
+            "pixeldit",
+            "ideogram4",
+            "boogu",
+            "krea2",
+            "joyimage",
+            "mage",
+            "minimax",
+            "yue2",
+            "flux3",
+            "moss_image",
+            "fibo2"
+          ]
+        ]
+      },
+      "optional": {
+        "device": [
+          [
+            "default",
+            "cpu"
+          ],
+          {
+            "advanced": true
+          }
+        ]
+      }
+    },
+    "output": [
+      "CLIP"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "EmptyLatentImage": {
+    "input": {
+      "required": {
+        "width": [
+          "INT",
+          {
+            "default": 1024,
+            "min": 16,
+            "max": 16384,
+            "step": 8,
+            "tooltip": "The width of the latent images in pixels."
+          }
+        ],
+        "height": [
+          "INT",
+          {
+            "default": 1024,
+            "min": 16,
+            "max": 16384,
+            "step": 8,
+            "tooltip": "The height of the latent images in pixels."
+          }
+        ],
+        "batch_size": [
+          "INT",
+          {
+            "default": 1,
+            "min": 1,
+            "max": 4096,
+            "tooltip": "The number of latent images in the batch."
+          }
+        ]
+      }
+    },
+    "output": [
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "KSampler": {
+    "input": {
+      "required": {
+        "model": [
+          "MODEL",
+          {
+            "tooltip": "The model used for denoising the input latent."
+          }
+        ],
+        "seed": [
+          "INT",
+          {
+            "default": 0,
+            "min": 0,
+            "max": 18446744073709551615,
+            "control_after_generate": true,
+            "tooltip": "The random seed used for creating the noise."
+          }
+        ],
+        "steps": [
+          "INT",
+          {
+            "default": 20,
+            "min": 1,
+            "max": 10000,
+            "tooltip": "The number of steps used in the denoising process."
+          }
+        ],
+        "cfg": [
+          "FLOAT",
+          {
+            "default": 8.0,
+            "min": 0.0,
+            "max": 100.0,
+            "step": 0.1,
+            "round": 0.01,
+            "tooltip": "The Classifier-Free Guidance scale balances creativity and adherence to the prompt. Higher values result in images more closely matching the prompt however too high values will negatively impact quality."
+          }
+        ],
+        "sampler_name": [
+          [
+            "res_multistep",
+            "dpmpp_2m"
+          ],
+          {
+            "tooltip": "The algorithm used when sampling, this can affect the quality, speed, and style of the generated output."
+          }
+        ],
+        "scheduler": [
+          [
+            "simple",
+            "karras",
+            "beta",
+            "normal"
+          ],
+          {
+            "tooltip": "The scheduler controls how noise is gradually removed to form the image."
+          }
+        ],
+        "positive": [
+          "CONDITIONING",
+          {
+            "tooltip": "The conditioning describing the attributes you want to include in the image."
+          }
+        ],
+        "negative": [
+          "CONDITIONING",
+          {
+            "tooltip": "The conditioning describing the attributes you want to exclude from the image."
+          }
+        ],
+        "latent_image": [
+          "LATENT",
+          {
+            "tooltip": "The latent image to denoise."
+          }
+        ],
+        "denoise": [
+          "FLOAT",
+          {
+            "default": 1.0,
+            "min": 0.0,
+            "max": 1.0,
+            "step": 0.01,
+            "tooltip": "The amount of denoising applied, lower values will maintain the structure of the initial image allowing for image to image sampling."
+          }
+        ]
+      }
+    },
+    "output": [
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "SaveImage": {
+    "input": {
+      "required": {
+        "images": [
+          "IMAGE",
+          {
+            "tooltip": "The images to save."
+          }
+        ],
+        "filename_prefix": [
+          "STRING",
+          {
+            "default": "ComfyUI",
+            "tooltip": "The prefix for the file to save. This may include formatting information such as %date:yyyy-MM-dd% or %Empty Latent Image.width% to include values from nodes."
+          }
+        ]
+      },
+      "hidden": {
+        "prompt": "PROMPT",
+        "extra_pnginfo": "EXTRA_PNGINFO"
+      }
+    },
+    "output": [
+      "IMAGE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "LoadImage": {
+    "input": {
+      "required": {
+        "image": [
+          [
+            "first.png",
+            "last.png",
+            "identity.png",
+            "face.png",
+            "motion.mp4",
+            "sound.wav",
+            "voice.wav",
+            "clip24.mp4",
+            "clip.wav",
+            "ref.png"
+          ],
+          {
+            "image_upload": true
+          }
+        ]
+      }
+    },
+    "output": [
+      "IMAGE",
+      "MASK"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "nodes.py",
+      "method": "INPUT_TYPES",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "SaveVideo": {
+    "input": {
+      "required": {
+        "video": [
+          "VIDEO",
+          {
+            "tooltip": "The video to save."
+          }
+        ],
+        "filename_prefix": [
+          "STRING",
+          {
+            "default": "video/ComfyUI",
+            "tooltip": "The prefix for the file to save. This may include formatting information such as %date:yyyy-MM-dd% or %Empty Latent Image.width% to include values from nodes."
+          }
+        ],
+        "format": [
+          "COMFY_DYNAMICCOMBO_V3",
+          {
+            "options": [
+              {
+                "key": "auto",
+                "inputs": {
+                  "required": {
+                    "codec": [
+                      "COMFY_DYNAMICCOMBO_V3",
+                      {
+                        "optional": false,
+                        "options": [
+                          {
+                            "key": "auto",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "h264",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "av1",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "prores",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              },
+              {
+                "key": "mp4",
+                "inputs": {
+                  "required": {
+                    "codec": [
+                      "COMFY_DYNAMICCOMBO_V3",
+                      {
+                        "optional": false,
+                        "options": [
+                          {
+                            "key": "auto",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "h264",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "av1",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              },
+              {
+                "key": "mkv",
+                "inputs": {
+                  "required": {
+                    "codec": [
+                      "COMFY_DYNAMICCOMBO_V3",
+                      {
+                        "optional": false,
+                        "options": [
+                          {
+                            "key": "auto",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "h264",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "av1",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "prores",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              },
+              {
+                "key": "webm",
+                "inputs": {
+                  "required": {
+                    "codec": [
+                      "COMFY_DYNAMICCOMBO_V3",
+                      {
+                        "optional": false,
+                        "options": [
+                          {
+                            "key": "auto",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          },
+                          {
+                            "key": "av1",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              },
+              {
+                "key": "mov",
+                "inputs": {
+                  "required": {
+                    "codec": [
+                      "COMFY_DYNAMICCOMBO_V3",
+                      {
+                        "optional": false,
+                        "options": [
+                          {
+                            "key": "prores",
+                            "inputs": {
+                              "required": {},
+                              "optional": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              }
+            ],
+            "tooltip": "Auto uses MOV for ProRes, WebM for AV1, and MP4 otherwise."
+          }
+        ]
+      },
+      "optional": {
+        "codec": [
+          "COMFY_DYNAMICCOMBO_V3",
+          {
+            "optional": true,
+            "options": [
+              {
+                "key": "auto",
+                "inputs": {
+                  "required": {},
+                  "optional": {}
+                }
+              },
+              {
+                "key": "h264",
+                "inputs": {
+                  "required": {},
+                  "optional": {}
+                }
+              },
+              {
+                "key": "av1",
+                "inputs": {
+                  "required": {},
+                  "optional": {}
+                }
+              },
+              {
+                "key": "prores",
+                "inputs": {
+                  "required": {},
+                  "optional": {}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "output": [
+      "VIDEO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_video.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "CreateVideo": {
+    "input": {
+      "required": {
+        "images": [
+          "IMAGE",
+          {
+            "tooltip": "The images to create a video from."
+          }
+        ],
+        "fps": [
+          "FLOAT",
+          {
+            "default": 30.0,
+            "min": 1.0,
+            "max": 120.0,
+            "step": 1.0
+          }
+        ]
+      },
+      "optional": {
+        "audio": [
+          "AUDIO",
+          {
+            "optional": true,
+            "tooltip": "The audio to add to the video."
+          }
+        ],
+        "bit_depth": [
+          [
+            "auto",
+            8,
+            10
+          ],
+          {
+            "options": [
+              "auto",
+              8,
+              10
+            ],
+            "default": "auto",
+            "tooltip": "Auto uses 8-bit for sRGB and 10-bit for HDR. Explicit 8-bit and 10-bit choices are independent of colorspace.",
+            "optional": true
+          }
+        ],
+        "color_space": [
+          [
+            "sRGB",
+            "HDR",
+            "HDR PQ"
+          ],
+          {
+            "options": [
+              "sRGB",
+              "HDR",
+              "HDR PQ"
+            ],
+            "default": "sRGB",
+            "optional": true,
+            "tooltip": "Colorspace of the input images. HDR selects BT.2020/HLG and HDR PQ selects BT.2020/PQ."
+          }
+        ],
+        "chroma_subsampling": [
+          [
+            "auto",
+            "444",
+            "422",
+            "420"
+          ],
+          {
+            "options": [
+              "auto",
+              "444",
+              "422",
+              "420"
+            ],
+            "default": "auto",
+            "optional": true,
+            "tooltip": "444 keeps full color resolution, 422 halves horizontal color resolution, and 420 halves both axes. Auto uses the codec default. Unsupported choices use the closest supported mode and print a console warning."
+          }
+        ],
+        "codec": [
+          [
+            "none",
+            "*Types.VideoCodec.as_input()"
+          ],
+          {
+            "options": [
+              "none",
+              "*Types.VideoCodec.as_input()"
+            ],
+            "default": "none",
+            "advanced": true,
+            "optional": true,
+            "tooltip": "Optionally encode the video immediately. None keeps the images in tensor form; Auto uses H.264."
+          }
+        ]
+      }
+    },
+    "output": [
+      "VIDEO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_video.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "GetVideoComponents": {
+    "input": {
+      "required": {
+        "video": [
+          "VIDEO",
+          {
+            "tooltip": "The video to extract components from."
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "IMAGE",
+      "AUDIO",
+      "FLOAT",
+      "COMBO",
+      "COMBO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_video.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "LoadVideo": {
+    "input": {
+      "required": {
+        "file": [
+          [
+            "first.png",
+            "last.png",
+            "identity.png",
+            "face.png",
+            "motion.mp4",
+            "sound.wav",
+            "voice.wav",
+            "clip24.mp4",
+            "clip.wav",
+            "ref.png"
+          ],
+          {
+            "options": [
+              "first.png",
+              "last.png",
+              "identity.png",
+              "face.png",
+              "motion.mp4",
+              "sound.wav",
+              "voice.wav",
+              "clip24.mp4",
+              "clip.wav",
+              "ref.png"
+            ],
+            "upload": "video"
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "VIDEO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_video.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "MiniMaxH3ImageToVideo": {
+    "input": {
+      "required": {
+        "clip": [
+          "CLIP",
+          {}
+        ],
+        "vae": [
+          "VAE",
+          {}
+        ],
+        "prompt": [
+          "STRING",
+          {
+            "multiline": true,
+            "dynamic_prompts": true
+          }
+        ],
+        "width": [
+          "INT",
+          {
+            "default": 1344,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "height": [
+          "INT",
+          {
+            "default": 768,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "length": [
+          "INT",
+          {
+            "default": 124,
+            "min": 5,
+            "max": 3600,
+            "step": 17,
+            "tooltip": "Frame count at 24 fps, snapped up to the model's 17k+5 grid (124 = ~5s; trained range is ~124-362, longer is untested)"
+          }
+        ]
+      },
+      "optional": {
+        "first_frame": [
+          "IMAGE",
+          {
+            "optional": true
+          }
+        ],
+        "last_frame": [
+          "IMAGE",
+          {
+            "optional": true
+          }
+        ]
+      }
+    },
+    "output": [
+      "CONDITIONING",
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_minimax_h3.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "MiniMaxH3AddGuide": {
+    "input": {
+      "required": {
+        "positive": [
+          "CONDITIONING",
+          {}
+        ],
+        "latent": [
+          "LATENT",
+          {}
+        ],
+        "frame_idx": [
+          "INT",
+          {
+            "default": 0,
+            "min": -9999,
+            "max": 9999,
+            "tooltip": "Frame index to anchor the image or the clip's first frame at. Negative values are counted from the end of the video."
+          }
+        ]
+      },
+      "optional": {
+        "vae": [
+          "VAE",
+          {
+            "optional": true,
+            "tooltip": "Video VAE, needed when an image is connected."
+          }
+        ],
+        "audio_vae": [
+          "VAE",
+          {
+            "optional": true,
+            "tooltip": "Audio VAE, needed when an audio is connected."
+          }
+        ],
+        "image": [
+          "IMAGE",
+          {
+            "optional": true,
+            "tooltip": "Image or video frames to anchor. Multi-frame batches are anchored as a clip and cropped down to the model's valid clip lengths: 5, 22, 39... (17k + 5) frames. Batches shorter than 5 frames use only the first image."
+          }
+        ],
+        "audio": [
+          "AUDIO",
+          {
+            "optional": true,
+            "tooltip": "Soundtrack to anchor starting at the same frame index, cropped to the video's remaining duration."
+          }
+        ]
+      }
+    },
+    "output": [
+      "CONDITIONING"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_minimax_h3.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "MiniMaxH3ReferenceToVideo": {
+    "input": {
+      "required": {
+        "clip": [
+          "CLIP",
+          {}
+        ],
+        "prompt": [
+          "STRING",
+          {
+            "multiline": true,
+            "dynamic_prompts": true
+          }
+        ],
+        "width": [
+          "INT",
+          {
+            "default": 1344,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "height": [
+          "INT",
+          {
+            "default": 768,
+            "min": 32,
+            "max": 16384,
+            "step": 32
+          }
+        ],
+        "length": [
+          "INT",
+          {
+            "default": 124,
+            "min": 5,
+            "max": 3600,
+            "step": 17,
+            "tooltip": "Frame count at 24 fps, (124 = ~5s, trained range is ~124-362)"
+          }
+        ],
+        "ref_image_size": [
+          [
+            "match",
+            "max"
+          ],
+          {
+            "options": [
+              "match",
+              "max"
+            ],
+            "default": "match",
+            "tooltip": "Reference image sizing. 'match' scales each ref (down only, keeping aspect) to the generation's pixel area; 'max' uses the reference pipeline's 2048px short edge for best identity fidelity. Reference tokens ride through every sampling step, so 'max' can be several times slower."
+          }
+        ]
+      },
+      "optional": {
+        "vae": [
+          "VAE",
+          {
+            "optional": true,
+            "tooltip": "Video VAE. Without it reference images/videos only condition the text encoder."
+          }
+        ],
+        "audio_vae": [
+          "VAE",
+          {
+            "optional": true,
+            "tooltip": "Audio VAE. Without it reference audio only conditions the text encoder."
+          }
+        ],
+        "ref_images": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "optional": true,
+            "template": {
+              "input": {
+                "required": {
+                  "ref_image": [
+                    "IMAGE",
+                    {
+                      "tooltip": "Reference image (downscaled to 2048 short edge if larger, never upscaled)"
+                    }
+                  ]
+                },
+                "optional": {}
+              },
+              "prefix": "ref_image_",
+              "min": 0,
+              "max": 9
+            }
+          }
+        ],
+        "ref_videos": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "optional": true,
+            "template": {
+              "input": {
+                "required": {
+                  "ref_video": [
+                    "IMAGE",
+                    {
+                      "tooltip": "Reference video frames at 24 fps (2-15s)"
+                    }
+                  ]
+                },
+                "optional": {}
+              },
+              "prefix": "ref_video_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ],
+        "ref_video_audios": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "optional": true,
+            "template": {
+              "input": {
+                "required": {
+                  "ref_video_audio": [
+                    "AUDIO",
+                    {
+                      "tooltip": "Soundtrack of the same-numbered reference video"
+                    }
+                  ]
+                },
+                "optional": {}
+              },
+              "prefix": "ref_video_audio_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ],
+        "ref_audios": [
+          "COMFY_AUTOGROW_V3",
+          {
+            "optional": true,
+            "template": {
+              "input": {
+                "required": {
+                  "ref_audio": [
+                    "AUDIO",
+                    {
+                      "tooltip": "Standalone reference audio"
+                    }
+                  ]
+                },
+                "optional": {}
+              },
+              "prefix": "ref_audio_",
+              "min": 0,
+              "max": 3
+            }
+          }
+        ]
+      }
+    },
+    "output": [
+      "CONDITIONING",
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_minimax_h3.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "ImageFromBatch": {
+    "input": {
+      "required": {
+        "image": [
+          "IMAGE",
+          {}
+        ],
+        "batch_index": [
+          "INT",
+          {
+            "default": 0,
+            "min": -16384,
+            "max": 16384
+          }
+        ],
+        "length": [
+          "INT",
+          {
+            "default": 1,
+            "min": 1,
+            "max": 4096
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "IMAGE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_images.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "BasicScheduler": {
+    "input": {
+      "required": {
+        "model": [
+          "MODEL",
+          {}
+        ],
+        "scheduler": [
+          [
+            "simple",
+            "karras",
+            "beta",
+            "normal"
+          ],
+          {
+            "options": [
+              "simple",
+              "karras",
+              "beta",
+              "normal"
+            ]
+          }
+        ],
+        "steps": [
+          "INT",
+          {
+            "default": 20,
+            "min": 1,
+            "max": 10000
+          }
+        ],
+        "denoise": [
+          "FLOAT",
+          {
+            "default": 1.0,
+            "min": 0.0,
+            "max": 1.0,
+            "step": 0.01
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "SIGMAS"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_custom_sampler.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "KSamplerSelect": {
+    "input": {
+      "required": {
+        "sampler_name": [
+          "SAMPLER_NAMES",
+          {
+            "options": "SAMPLER_NAMES"
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "SAMPLER"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_custom_sampler.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "BasicGuider": {
+    "input": {
+      "required": {
+        "model": [
+          "MODEL",
+          {}
+        ],
+        "conditioning": [
+          "CONDITIONING",
+          {}
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "GUIDER"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_custom_sampler.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "RandomNoise": {
+    "input": {
+      "required": {
+        "noise_seed": [
+          "INT",
+          {
+            "default": 0,
+            "min": 0,
+            "max": 18446744073709551615,
+            "control_after_generate": true
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "NOISE"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_custom_sampler.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "SamplerCustomAdvanced": {
+    "input": {
+      "required": {
+        "noise": [
+          "NOISE",
+          {}
+        ],
+        "guider": [
+          "GUIDER",
+          {}
+        ],
+        "sampler": [
+          "SAMPLER",
+          {}
+        ],
+        "sigmas": [
+          "SIGMAS",
+          {}
+        ],
+        "latent_image": [
+          "LATENT",
+          {}
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "LATENT",
+      "LATENT"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_custom_sampler.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "VAEDecodeAudio": {
+    "input": {
+      "required": {
+        "samples": [
+          "LATENT",
+          {}
+        ],
+        "vae": [
+          "VAE",
+          {}
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "AUDIO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_audio.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "SaveAudioAdvanced": {
+    "input": {
+      "required": {
+        "audio": [
+          "AUDIO",
+          {
+            "tooltip": "The audio to save."
+          }
+        ],
+        "filename_prefix": [
+          "STRING",
+          {
+            "default": "audio/ComfyUI",
+            "tooltip": "The prefix for the file to save. May include formatting tokens such as %date:yyyy-MM-dd%."
+          }
+        ],
+        "format": [
+          "COMFY_DYNAMICCOMBO_V3",
+          {
+            "options": [
+              {
+                "key": "flac",
+                "inputs": {
+                  "required": {},
+                  "optional": {}
+                }
+              },
+              {
+                "key": "mp3",
+                "inputs": {
+                  "required": {
+                    "quality": [
+                      [
+                        "V0",
+                        "128k",
+                        "320k"
+                      ],
+                      {
+                        "options": [
+                          "V0",
+                          "128k",
+                          "320k"
+                        ],
+                        "default": "V0"
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              },
+              {
+                "key": "opus",
+                "inputs": {
+                  "required": {
+                    "quality": [
+                      [
+                        "64k",
+                        "96k",
+                        "128k",
+                        "192k",
+                        "320k"
+                      ],
+                      {
+                        "options": [
+                          "64k",
+                          "96k",
+                          "128k",
+                          "192k",
+                          "320k"
+                        ],
+                        "default": "128k"
+                      }
+                    ]
+                  },
+                  "optional": {}
+                }
+              }
+            ],
+            "tooltip": "The file format in which to save the audio."
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "AUDIO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_audio.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "LoadAudio": {
+    "input": {
+      "required": {
+        "audio": [
+          [
+            "first.png",
+            "last.png",
+            "identity.png",
+            "face.png",
+            "motion.mp4",
+            "sound.wav",
+            "voice.wav",
+            "clip24.mp4",
+            "clip.wav",
+            "ref.png"
+          ],
+          {
+            "upload": "audio",
+            "options": [
+              "first.png",
+              "last.png",
+              "identity.png",
+              "face.png",
+              "motion.mp4",
+              "sound.wav",
+              "voice.wav",
+              "clip24.mp4",
+              "clip.wav",
+              "ref.png"
+            ]
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "AUDIO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_audio.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  },
+  "TrimAudioDuration": {
+    "input": {
+      "required": {
+        "audio": [
+          "AUDIO",
+          {}
+        ],
+        "start_index": [
+          "FLOAT",
+          {
+            "default": 0.0,
+            "min": -18446744073709551615,
+            "max": 18446744073709551615,
+            "step": 0.01,
+            "tooltip": "Start time in seconds, can be negative to count from the end (supports sub-seconds)."
+          }
+        ],
+        "duration": [
+          "FLOAT",
+          {
+            "default": 60.0,
+            "min": 0.0,
+            "step": 0.01,
+            "tooltip": "Duration in seconds"
+          }
+        ]
+      },
+      "optional": {}
+    },
+    "output": [
+      "AUDIO"
+    ],
+    "_source": {
+      "commit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+      "path": "comfy_extras/nodes_audio.py",
+      "method": "define_schema",
+      "dynamicFileLists": "Test-only filenames; weights not installed or validated."
+    }
+  }
+}

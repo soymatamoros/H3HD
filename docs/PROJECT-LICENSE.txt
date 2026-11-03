@@ -1,0 +1,10 @@
+MiniMax H3 Studio — original project source
+
+No open-source license has been selected for the original application code in
+this repository. This file does not grant a license to redistribute that code.
+The project owner may replace this notice with their chosen license.
+
+Third-party components retain their respective licenses. See
+THIRD_PARTY_NOTICES.md and docs/licenses/ for the licenses and source locations
+of bundled software. Model weights are separate downloads governed by their
+own terms, not by this file.

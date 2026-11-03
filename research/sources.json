@@ -1,0 +1,42 @@
+{
+  "verifiedDate": "2026-11-02",
+  "comfyCommit": "858fd58dcd47b1407a6778e0920f02a9b40fd538",
+  "docsCommit": "7066cf4385164aee28581f1424bca2c586e6983b",
+  "workflowCommit": "60d0d2c2f5c98ab50116abd837156e4010534657",
+  "files": [
+    {
+      "file": "workflows/official/video_minimax_h3_t2v.json",
+      "sha256": "8a5eb23b0dd2df9e99b6f7af9684e770f188feca820d241364b729e01dedf3b6",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    },
+    {
+      "file": "workflows/official/video_minimax_h3_i2v.json",
+      "sha256": "34ee39544808fd3b0dc8de9df082940d4d41c3771beb80d3988c1ea5531cec0d",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    },
+    {
+      "file": "workflows/official/video_minimax_h3_r2v.json",
+      "sha256": "afeea99e9fd5a1456df348e0573e289c1243f2f28546fc95c1c963f808d61ddb",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    },
+    {
+      "file": "workflows/official/video_minimax_h3_multiframe_reference.json",
+      "sha256": "a0526a9f0d67f3fac3ad48bda26c86aa6871c0322a5034534fdfa39d9637e641",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    },
+    {
+      "file": "workflows/official/video_minimax_h3_i2v_continuation.json",
+      "sha256": "332184c45587d70c502fe67caf1c87c17a42eea0be4188c83f7e32be84e810e7",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    },
+    {
+      "file": "workflows/official/sdxl.json",
+      "sha256": "f13ce5e57ecd3b7cf52a953b938ad798843adb61e8f3969344e209680b490643",
+      "source": "https://github.com/Comfy-Org/workflow_templates/tree/60d0d2c2f5c98ab50116abd837156e4010534657/templates"
+    }
+  ],
+  "huggingFace": {
+    "state": "blocked",
+    "reason": "Configured cloud proxy returned403 for huggingface.co; files/hashes/licenses not independently fetched. Runtime must resolve trusted HF LFS SHA256+size before installing."
+  }
+}

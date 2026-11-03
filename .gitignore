@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dist-electron/
+release/
+data/
+runtime/
+comfyui/
+models/
+outputs/
+projects/
+logs/
+*.partial
+*.log
+playwright-report/
+test-results/

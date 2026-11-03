@@ -1,0 +1,6 @@
+{
+  "module": "enhancement",
+  "modelIds": [],
+  "optional": true,
+  "note": "FFmpeg Lanczos/sharpen/audio filters only. No RIFE or AI super-resolution is claimed."
+}

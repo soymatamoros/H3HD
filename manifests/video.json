@@ -1,0 +1,11 @@
+{
+  "module": "video",
+  "modelIds": [
+    "h3-fl2va",
+    "h3-encoder",
+    "h3-video-vae",
+    "h3-audio-vae"
+  ],
+  "optional": false,
+  "note": "Model sizes are approximate from official workflow notes; install only after live trusted SHA256/size resolution. No unverified learned enhancement model is included."
+}

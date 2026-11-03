@@ -1,0 +1,47 @@
+{
+  "name": "minimax-h3-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portable local ComfyUI creative studio with verified capability gates",
+  "type": "module",
+  "main": "dist-electron/desktop/main.js",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build && tsc -p tsconfig.electron.json",
+    "test": "node scripts/test.mjs",
+    "test:ui": "node tests/ui-smoke.mjs",
+    "test:electron": "node tests/electron-smoke.mjs",
+    "desktop": "npm run build && electron .",
+    "package:win": "npm run build && electron-builder --win --x64",
+    "check": "npm test && npm run build"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "playwright-core": "1.58.2",
+    "7zip-bin": "^5.2.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/ws": "^8.5.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.0.12",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.0"
+  },
+  "build": {
+    "appId": "studio.minimaxh3.desktop",
+    "productName": "MiniMax H3 Studio",
+    "asar": true,
+    "directories": { "output": "release" },
+    "files": ["dist/**", "dist-electron/**", "manifests/**", "workflows/**", "package.json"],
+    "extraResources": [{"from": "scripts", "to": "scripts"}, {"from": "docs", "to": "docs"}, {"from":"README.md","to":"README.md"}, {"from":"node_modules/7zip-bin/win/x64/7za.exe","to":"tools/7za.exe"}],
+    "win": { "target": ["zip"], "signAndEditExecutable": false, "artifactName": "MiniMaxH3Studio-${version}-win-x64.zip" }
+  }
+}
