@@ -1,0 +1,57 @@
+name: Windows test download
+on:
+  push:
+    paths:
+      - '.github/workflows/windows-download.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: windows-test-download
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build Windows portable ZIP
+        run: npm run package:win
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - name: Checksum
+        shell: pwsh
+        run: |
+          $zip = Get-Item release/MiniMaxH3Studio-0.1.0-win-x64.zip
+          $hash = (Get-FileHash $zip.FullName -Algorithm SHA256).Hash.ToLower()
+          "$hash  $($zip.Name)" | Set-Content release/SHA256SUMS.txt -Encoding ascii
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MiniMaxH3Studio-Windows-x64
+          path: |
+            release/MiniMaxH3Studio-0.1.0-win-x64.zip
+            release/SHA256SUMS.txt
+          if-no-files-found: error
+      - name: Publish engineering prerelease
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          @"
+          Versión de ingeniería para pruebas en Windows x64. No se ha validado la inferencia en Windows/GPU.
+          
+          Descarga MiniMaxH3Studio-0.1.0-win-x64.zip, extrae TODO el ZIP en una carpeta con permisos de escritura y abre MiniMax H3 Studio.exe.
+          
+          El ejecutable no está firmado. Los modelos y el backend se instalan por separado desde la aplicación. Abrir la interfaz no requiere descargar modelos. Para generar video, configura el backend y los modelos siguiendo el README.
+          
+          SHA256SUMS.txt permite comprobar la integridad del ZIP. No se incluyen pesos de modelos.
+          "@ | Set-Content release-notes.md -Encoding utf8
+          gh release create "v0.1.0-test-${{ github.run_number }}" release/MiniMaxH3Studio-0.1.0-win-x64.zip release/SHA256SUMS.txt --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "MiniMax H3 Studio 0.1.0 — prueba Windows x64" --notes-file release-notes.md --prerelease
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
